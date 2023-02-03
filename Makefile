@@ -6,7 +6,7 @@
 #    By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 05:59:46 by mi                #+#    #+#              #
-#    Updated: 2023/02/01 06:28:24 by mi               ###   ########.fr        #
+#    Updated: 2023/02/01 06:55:28 by mi               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT_DIR)libft.a ./libft.a
-	@$(CC) $(CFLAGS) -llibft -L./mlx_arm -lmlx -framework OpenGL -framework AppKit -lz -o $(NAME) $^
+	@$(CC) $(CFLAGS) -L./libft -lft -L./mlx_arm -lmlx -framework OpenGL -framework AppKit -lz -o $(NAME) $^
 	
 %.o : %.c
 	@$(CC) $(CFLAGS) -c -Imlx $< -o $@
