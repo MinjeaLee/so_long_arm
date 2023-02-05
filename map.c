@@ -23,16 +23,18 @@ map* parser(char *filename)
 	fd = file_open(filename);
 	m->world = (char **)malloc(sizeof(char *));
 	tmp = get_next_line(fd);
-	m->width = ft_strlen(tmp); 
+	m->width = ft_strlen(tmp) - 1; 
 	m->height = 0;
 	while (tmp)
 	{
 		m->world = (char **)ft_realloc(m->world, sizeof(char *) * m->height + 1);
 		*(m->world + m->height) = tmp;
-		free(tmp);
+		// free(tmp);
 		m->height++;
 		tmp = get_next_line(fd);
 	}
+
+	free(tmp);
 
 	return (m);
 }

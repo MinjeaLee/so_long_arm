@@ -6,7 +6,7 @@
 #    By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 05:59:46 by mi                #+#    #+#              #
-#    Updated: 2023/02/05 01:41:25 by mi               ###   ########.fr        #
+#    Updated: 2023/02/06 05:50:48 by mi               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = #-Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft/
 
-SRCS = main.c map.c render.c
+SRCS = main.c map.c render.c keyboard.c
 
 OBJS = $(SRCS:%.c=%.o)
 
