@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 06:52:02 by mi                #+#    #+#             */
-/*   Updated: 2023/02/06 05:55:55 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/12 14:43:54 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ image *img_init(void *mlx);
 void put_img(game *g, int w, int h);
 void render_map(game *g);
 void press_w(game *g);
+void press_a(game *g);
+void press_s(game *g);
+void press_d(game *g);
 player *init();
 int key_press(int keycode, game *g);
 

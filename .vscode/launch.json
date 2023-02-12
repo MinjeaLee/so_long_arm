@@ -8,7 +8,6 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			// "program": "${workspaceFolder}/a.out",
 			"program": "${workspaceFolder}/so_long",
 			"args": ["./maps/1.ber"],
 			"cwd": "${workspaceFolder}"

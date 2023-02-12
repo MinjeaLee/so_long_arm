@@ -29,7 +29,6 @@ map* parser(char *filename)
 	{
 		m->world = (char **)ft_realloc(m->world, sizeof(char *) * m->height + 1);
 		*(m->world + m->height) = tmp;
-		// free(tmp);
 		m->height++;
 		tmp = get_next_line(fd);
 	}
