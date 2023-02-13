@@ -1,63 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/13 19:41:01 by mi                #+#    #+#             */
+/*   Updated: 2023/02/13 21:03:13 by mi               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void game_init(game *g, char *filename)
+void	print_error(char *str)
 {
+	ft_putstr_fd(str, 2);
+	exit(1);
+}
+
+void	init(game *g, char *filename)
+{
+	int	w;
+	int	h;
+
 	g->mlx = mlx_init();
 	g->img = img_init(g->mlx);
-	printf("%p\n", g->img);
-	printf("%p\n", g->img->land);
 	g->m = parser(filename);
-	g->p = init();
-	g->keys = 1;
-	g->win = mlx_new_window(g->mlx, g->m->width * 32, g->m->height * 32, "so_long");
-	printf("%p\n", g->win);
+	g->p = game_init(g);
+	w = g->m->width * 32;
+	h = g->m->height * 32;
+	g->win = mlx_new_window(g->mlx, w, h, "so_long");
 	render_map(g);
-	printf("1\n");
 }
 
-
-int key_press(int keycode, game *g)
+int	key_press(int keycode, game *g)
 {
-	printf("1\n");
 	if (keycode == KEY_W)
-	{
 		press_w(g);
-	}
-	else if(keycode == KEY_A)
-	{
+	else if (keycode == KEY_A)
 		press_a(g);
-	}
-	else if(keycode == KEY_S)
-	{
+	else if (keycode == KEY_S)
 		press_s(g);
-	}
-	else if(keycode == KEY_D)
-	{
+	else if (keycode == KEY_D)
 		press_d(g);
-	}
-	else if(keycode == KEY_ESC)
-	{
+	else if (keycode == KEY_ESC)
 		exit(0);
-	}
-
-	return 0 ;
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	game *g;
+	game	*g;
 
 	g = (game *)malloc(sizeof(game));
 	if (argc != 2)
-	{
-		ft_putstr_fd("Error filename\n", 2);
-		exit(1);
-	}
-	game_init(g, argv[1]);
-	printf("2\n");
+		print_error("Error_argument\n");
+	init(g, argv[1]);
 	mlx_hook(g->win, X_EVENT_KEY_PRESS, 2, &key_press, g);
-
 	mlx_loop(g->mlx);
-
-	return 0;
+	return (0);
 }
