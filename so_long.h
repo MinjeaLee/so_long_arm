@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 06:52:02 by mi                #+#    #+#             */
-/*   Updated: 2023/02/12 14:43:54 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/13 21:02:57 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,40 @@ typedef struct Game
 {
 	void *mlx;
 	void *win;
-	int cnt_key;
+	int cnt_key; // TODO : player로 옮기기
 	int keys;
 	map *m;
 	image *img; 
 	player *p;
 } game;
 
+
+// main
+void init(game *g, char *filename);
+int key_press(int keycode, game *g);
+void print_error(char *str);
+
+// map
 int file_open(char *filename);
 map *parser(char *filename);
-void game_init(game *g, char *filename);
-image *img_init(void *mlx);
-void put_img(game *g, int w, int h);
-void render_map(game *g);
+
+// keyboard
+int clear_game(game *g);
 void press_w(game *g);
 void press_a(game *g);
 void press_s(game *g);
 void press_d(game *g);
-player *init();
-int key_press(int keycode, game *g);
+
+// render
+image *img_init(void *mlx);
+void put_img(game *g, int w, int h);
+void render_map(game *g);
+
+// game
+player *game_init(game *g);
+void find_start(game *g, player *p);
+void count_keys(game *g, player *p);
+
 
 #endif
 
