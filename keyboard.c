@@ -1,19 +1,15 @@
 #include "so_long.h"
 
-player *init()
+int clear_game(game *g)
 {
-	player *p;
-
-	p = (player *)malloc(sizeof(player));
-	p->x = 3;
-	p->y = 1;
-	p->walk_count = 0;
-	return (p);
+	g->p->walk_count++;
+	printf("%s %d%s\n", "Congratulations! You have", g->p->walk_count, "steps.");
+	exit(0);
 }
 
 void press_w(game *g)
 {
-	printf("%d %d\n", g->p->x, g->p->y);
+	printf("%c\n", g->m->world[g->p->x - 1][g->p->y]);
 	if (g->m->world[g->p->x - 1][g->p->y] == '1')
 		return;
 	else if (g->m->world[g->p->x - 1][g->p->y] == 'C')
@@ -26,10 +22,7 @@ void press_w(game *g)
 		render_map(g);
 	}
 	else if (g->m->world[g->p->x - 1][g->p->y] == 'E' && g->keys == g->cnt_key)
-	{
-		printf("You win!\n");
-		exit(0);
-	}
+		clear_game(g);
 	else if (g->m->world[g->p->x - 1][g->p->y] == 'E' && g->keys != g->cnt_key)
 		return;
 	else
@@ -39,14 +32,6 @@ void press_w(game *g)
 		g->m->world[g->p->x][g->p->y] = '0';
 		g->p->x--;
 		render_map(g);
-	}
-	for (int i = 0; i < g->m->height; i++)
-	{
-		for (int j = 0; j < g->m->width; j++)
-		{
-			printf("%c", g->m->world[i][j]);
-		}
-		printf("\n");
 	}
 }
 
@@ -64,10 +49,7 @@ void press_a(game *g)
 		render_map(g);
 	}
 	else if (g->m->world[g->p->x][g->p->y - 1] == 'E' && g->keys == g->cnt_key)
-	{
-		printf("You win!\n");
-		exit(0);
-	}
+		clear_game(g);
 	else if (g->m->world[g->p->x][g->p->y - 1] == 'E' && g->keys != g->cnt_key)
 		return;
 	else
@@ -77,14 +59,6 @@ void press_a(game *g)
 		g->m->world[g->p->x][g->p->y] = '0';
 		g->p->y--;
 		render_map(g);
-	}
-	for (int i = 0; i < g->m->height; i++)
-	{
-		for (int j = 0; j < g->m->width; j++)
-		{
-			printf("%c", g->m->world[i][j]);
-		}
-		printf("\n");
 	}
 }
 
@@ -102,10 +76,7 @@ void press_s(game *g)
 		render_map(g);
 	}
 	else if (g->m->world[g->p->x + 1][g->p->y] == 'E' && g->keys == g->cnt_key)
-	{
-		printf("You win!\n");
-		exit(0);
-	}
+		clear_game(g);
 	else if (g->m->world[g->p->x + 1][g->p->y] == 'E' && g->keys != g->cnt_key)
 		return;
 	else
@@ -115,14 +86,6 @@ void press_s(game *g)
 		g->m->world[g->p->x][g->p->y] = '0';
 		g->p->x++;
 		render_map(g);
-	}
-	for (int i = 0; i < g->m->height; i++)
-	{
-		for (int j = 0; j < g->m->width; j++)
-		{
-			printf("%c", g->m->world[i][j]);
-		}
-		printf("\n");
 	}
 }
 
@@ -140,10 +103,7 @@ void press_d(game *g)
 		render_map(g);
 	}
 	else if (g->m->world[g->p->x][g->p->y + 1] == 'E' && g->keys == g->cnt_key)
-	{
-		printf("You win!\n");
-		exit(0);
-	}
+		clear_game(g);
 	else if (g->m->world[g->p->x][g->p->y + 1] == 'E' && g->keys != g->cnt_key)
 		return;
 	else
@@ -153,13 +113,5 @@ void press_d(game *g)
 		g->m->world[g->p->x][g->p->y] = '0';
 		g->p->y++;
 		render_map(g);
-	}
-	for (int i = 0; i < g->m->height; i++)
-	{
-		for (int j = 0; j < g->m->width; j++)
-		{
-			printf("%c", g->m->world[i][j]);
-		}
-		printf("\n");
 	}
 }
