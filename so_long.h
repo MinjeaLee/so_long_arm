@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 06:52:02 by mi                #+#    #+#             */
-/*   Updated: 2023/02/13 21:02:57 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/14 18:14:45 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ typedef struct Player
 	int x;
 	int y;
 	int walk_count;
+	int cnt_key;
+	int keys;
 } player;
 
 typedef struct Game
 {
 	void *mlx;
 	void *win;
-	int cnt_key; // TODO : player로 옮기기
-	int keys;
+	// int cnt_key; // TODO : player로 옮기기
+	// int keys;
 	map *m;
 	image *img; 
 	player *p;
@@ -76,11 +78,11 @@ int file_open(char *filename);
 map *parser(char *filename);
 
 // keyboard
-int clear_game(game *g);
-void press_w(game *g);
-void press_a(game *g);
-void press_s(game *g);
-void press_d(game *g);
+int clear_game(player *p);
+void press_w(game *g, player *p);
+void press_a(game *g, player *p);
+void press_s(game *g, player *p);
+void press_d(game *g, player *p);
 
 // render
 image *img_init(void *mlx);

@@ -1,117 +1,131 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 18:09:15 by mi                #+#    #+#             */
+/*   Updated: 2023/02/14 18:13:34 by mi               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #include "so_long.h"
 
-int clear_game(game *g)
+int clear_game(player *p)
 {
-	g->p->walk_count++;
-	printf("%s %d%s\n", "Congratulations! You have", g->p->walk_count, "steps.");
+	p->walk_count++;
+	printf("%s %d%s\n", "Congratulations! You have", p->walk_count, "steps.");
 	exit(0);
 }
 
-void press_w(game *g)
+void press_w(game *g, player *p)
 {
-	printf("%c\n", g->m->world[g->p->x - 1][g->p->y]);
-	if (g->m->world[g->p->x - 1][g->p->y] == '1')
+	if (g->m->world[p->x - 1][p->y] == '1')
 		return;
-	else if (g->m->world[g->p->x - 1][g->p->y] == 'C')
+	else if (g->m->world[p->x - 1][p->y] == 'C')
 	{
-		g->cnt_key++;
-		g->p->walk_count++;
-		g->m->world[g->p->x - 1][g->p->y] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->x--;
+		// p->cnt_key++;
+		p->cnt_key++;
+		p->walk_count++;
+		g->m->world[p->x - 1][p->y] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->x--;
 		render_map(g);
 	}
-	else if (g->m->world[g->p->x - 1][g->p->y] == 'E' && g->keys == g->cnt_key)
-		clear_game(g);
-	else if (g->m->world[g->p->x - 1][g->p->y] == 'E' && g->keys != g->cnt_key)
+	else if (g->m->world[p->x - 1][p->y] == 'E' && p->keys == p->cnt_key)
+		clear_game(p);
+	else if (g->m->world[p->x - 1][p->y] == 'E' && p->keys != p->cnt_key)
 		return;
 	else
 	{
-		g->p->walk_count++;
-		g->m->world[g->p->x - 1][g->p->y] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->x--;
+		p->walk_count++;
+		g->m->world[p->x - 1][p->y] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->x--;
 		render_map(g);
 	}
 }
 
-void press_a(game *g)
+void press_a(game *g, player *p)
 {
-	if (g->m->world[g->p->x][g->p->y - 1] == '1')
+	if (g->m->world[p->x][p->y - 1] == '1')
 		return;
-	else if (g->m->world[g->p->x][g->p->y - 1] == 'C')
+	else if (g->m->world[p->x][p->y - 1] == 'C')
 	{
-		g->cnt_key++;
-		g->p->walk_count++;
-		g->m->world[g->p->x][g->p->y - 1] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->y--;
+		p->cnt_key++;
+		p->walk_count++;
+		g->m->world[p->x][p->y - 1] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->y--;
 		render_map(g);
 	}
-	else if (g->m->world[g->p->x][g->p->y - 1] == 'E' && g->keys == g->cnt_key)
-		clear_game(g);
-	else if (g->m->world[g->p->x][g->p->y - 1] == 'E' && g->keys != g->cnt_key)
+	else if (g->m->world[p->x][p->y - 1] == 'E' && p->keys == p->cnt_key)
+		clear_game(p);
+	else if (g->m->world[p->x][p->y - 1] == 'E' && p->keys != p->cnt_key)
 		return;
 	else
 	{
-		g->p->walk_count++;
-		g->m->world[g->p->x][g->p->y - 1] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->y--;
+		p->walk_count++;
+		g->m->world[p->x][p->y - 1] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->y--;
 		render_map(g);
 	}
 }
 
-void press_s(game *g)
+void press_s(game *g, player *p)
 {
-	if (g->m->world[g->p->x + 1][g->p->y] == '1')
+	if (g->m->world[p->x + 1][p->y] == '1')
 		return;
-	else if (g->m->world[g->p->x + 1][g->p->y] == 'C')
+	else if (g->m->world[p->x + 1][p->y] == 'C')
 	{
-		g->cnt_key++;
-		g->p->walk_count++;
-		g->m->world[g->p->x + 1][g->p->y] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->x++;
+		p->cnt_key++;
+		p->walk_count++;
+		g->m->world[p->x + 1][p->y] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->x++;
 		render_map(g);
 	}
-	else if (g->m->world[g->p->x + 1][g->p->y] == 'E' && g->keys == g->cnt_key)
-		clear_game(g);
-	else if (g->m->world[g->p->x + 1][g->p->y] == 'E' && g->keys != g->cnt_key)
+	else if (g->m->world[p->x + 1][p->y] == 'E' && p->keys == p->cnt_key)
+		clear_game(p);
+	else if (g->m->world[p->x + 1][p->y] == 'E' && p->keys != p->cnt_key)
 		return;
 	else
 	{
-		g->p->walk_count++;
-		g->m->world[g->p->x + 1][g->p->y] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->x++;
+		p->walk_count++;
+		g->m->world[p->x + 1][p->y] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->x++;
 		render_map(g);
 	}
 }
 
-void press_d(game *g)
+void press_d(game *g, player *p)
 {
-	if (g->m->world[g->p->x][g->p->y + 1] == '1')
+	if (g->m->world[p->x][p->y + 1] == '1')
 		return;
-	else if (g->m->world[g->p->x][g->p->y + 1] == 'C')
+	else if (g->m->world[p->x][p->y + 1] == 'C')
 	{
-		g->cnt_key++;
-		g->p->walk_count++;
-		g->m->world[g->p->x][g->p->y + 1] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->y++;
+		p->cnt_key++;
+		p->walk_count++;
+		g->m->world[p->x][p->y + 1] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->y++;
 		render_map(g);
 	}
-	else if (g->m->world[g->p->x][g->p->y + 1] == 'E' && g->keys == g->cnt_key)
-		clear_game(g);
-	else if (g->m->world[g->p->x][g->p->y + 1] == 'E' && g->keys != g->cnt_key)
+	else if (g->m->world[p->x][p->y + 1] == 'E' && p->keys == p->cnt_key)
+		clear_game(p);
+	else if (g->m->world[p->x][p->y + 1] == 'E' && p->keys != p->cnt_key)
 		return;
 	else
 	{
-		g->p->walk_count++;
-		g->m->world[g->p->x][g->p->y + 1] = 'P';
-		g->m->world[g->p->x][g->p->y] = '0';
-		g->p->y++;
+		p->walk_count++;
+		g->m->world[p->x][p->y + 1] = 'P';
+		g->m->world[p->x][p->y] = '0';
+		p->y++;
 		render_map(g);
 	}
 }

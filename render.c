@@ -26,9 +26,9 @@ void put_img(game *g, int w, int h)
 		mlx_put_image_to_window(g->mlx, g->win, g->img->player, w * 32, h * 32);
 	else if (g->m->world[h][w] == 'C')
 		mlx_put_image_to_window(g->mlx, g->win, g->img->food, w * 32, h * 32);
-	else if (g->m->world[h][w] == 'E' && g->keys == g->cnt_key)
+	else if (g->m->world[h][w] == 'E' && g->p->keys == g->p->cnt_key)
 		mlx_put_image_to_window(g->mlx, g->win, g->img->door_open, w * 32, h * 32);
-	else if (g->m->world[h][w] == 'E' && g->keys != g->cnt_key)
+	else if (g->m->world[h][w] == 'E' && g->p->keys != g->p->cnt_key)
 		mlx_put_image_to_window(g->mlx, g->win, g->img->door_closed, w * 32, h * 32);
 	else
 		mlx_put_image_to_window(g->mlx, g->win, g->img->land, w * 32, h * 32);

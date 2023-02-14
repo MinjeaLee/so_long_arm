@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:41:01 by mi                #+#    #+#             */
-/*   Updated: 2023/02/13 21:03:13 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/14 18:15:20 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	init(game *g, char *filename)
 int	key_press(int keycode, game *g)
 {
 	if (keycode == KEY_W)
-		press_w(g);
+		press_w(g, g->p);
 	else if (keycode == KEY_A)
-		press_a(g);
+		press_a(g, g->p);
 	else if (keycode == KEY_S)
-		press_s(g);
+		press_s(g, g->p);
 	else if (keycode == KEY_D)
-		press_d(g);
+		press_d(g, g->p);
 	else if (keycode == KEY_ESC)
 		exit(0);
 	return (0);

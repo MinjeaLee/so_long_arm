@@ -27,11 +27,8 @@ void find_start(game *g, player *p)
 		{
 			if (g->m->world[i][j] == 'P')
 			{
-				// g->p->x = i;
-				// g->p->y = j;
 				p->x = i;
 				p->y = j;
-				printf("start x : %d, y : %d\n", i, j);
 				return ;
 			}
 			j++;
@@ -53,12 +50,12 @@ void count_keys(game *g, player *p)
 		while (j < g->m->width)
 		{
 			if (g->m->world[i][j] == 'C')
-				g->keys++;
+				p->keys++;
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	if (g->keys == 0)
+	if (p->keys == 0)
 		print_error("no keys\n");
 }
