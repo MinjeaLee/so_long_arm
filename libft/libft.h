@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 21:39:16 by mi                #+#    #+#             */
-/*   Updated: 2023/02/01 07:41:31 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/14 18:42:51 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char *ft_strcpy(char *dst, const char *src);
 void *ft_realloc(void *ptr, size_t size);
 char *get_next_line(int fd);
+char *ft_strip(char *str);
 
 #endif

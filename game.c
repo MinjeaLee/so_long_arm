@@ -8,7 +8,6 @@ player *game_init(game *g)
 
 	p = (player *)malloc(sizeof(player));
 	find_start(g, p);
-	// printf("start x : %d, y : %d\n", g->p->x, g->p->y);
 	count_keys(g, p);
 	p->walk_count = 0;
 	return (p);
@@ -56,6 +55,7 @@ void count_keys(game *g, player *p)
 		j = 0;
 		i++;
 	}
+	//! 맵에 key가 하나 이상인지
 	if (p->keys == 0)
 		print_error("no keys\n");
 }
