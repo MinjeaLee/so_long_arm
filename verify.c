@@ -88,6 +88,7 @@ int has_valid_path(game *g)
 		return (0); // 플레이어가 수집할 수 있는 수집품 개수가 전체 수집품 개수와 다르면 false
 	if (e_count != 1)
 		return (0); // 탈출구 개수가 1이 아니면 false
+	//TODO : duplicate 맵 free
 	return (1);
 }
 
