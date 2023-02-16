@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:41:01 by mi                #+#    #+#             */
-/*   Updated: 2023/02/14 18:15:20 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/16 22:24:55 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ void	init(game *g, char *filename)
 
 	g->mlx = mlx_init();
 	g->img = img_init(g->mlx);
-	g->m = parser(filename);
+	g->m = map_init(filename);
 	g->p = game_init(g);
+	if (!has_valid_path(g))
+		print_error("Error_path\n");
 	w = g->m->width * 32;
 	h = g->m->height * 32;
 	g->win = mlx_new_window(g->mlx, w, h, "so_long");

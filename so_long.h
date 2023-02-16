@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 06:52:02 by mi                #+#    #+#             */
-/*   Updated: 2023/02/14 18:14:45 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/16 22:45:22 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ typedef struct Game
 {
 	void *mlx;
 	void *win;
-	// int cnt_key; // TODO : player로 옮기기
-	// int keys;
 	map *m;
 	image *img; 
 	player *p;
@@ -74,8 +72,11 @@ int key_press(int keycode, game *g);
 void print_error(char *str);
 
 // map
+map *map_init(char *filename);
 int file_open(char *filename);
-map *parser(char *filename);
+void	parser(char *filename, map *m);
+void map_boundary_check(map *m);
+void map_entity_check(map *m);
 
 // keyboard
 int clear_game(player *p);
@@ -94,6 +95,11 @@ player *game_init(game *g);
 void find_start(game *g, player *p);
 void count_keys(game *g, player *p);
 
+// verify
+char **duplicate(game *g);
+int dfs_c(int x, int y, char **map);
+int dfs_e(int x, int y, char **map);
+int has_valid_path(game *g);
 
 #endif
 
