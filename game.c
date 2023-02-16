@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/16 23:01:08 by mi                #+#    #+#             */
+/*   Updated: 2023/02/16 23:02:04 by mi               ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-//TODO : 3. 맵 유효성 체크
-
-player *game_init(game *g)
+player	*game_init(game *g)
 {
-	player *p;
+	player	*p;
 
 	p = (player *)malloc(sizeof(player));
 	find_start(g, p);
@@ -13,10 +23,10 @@ player *game_init(game *g)
 	return (p);
 }
 
-void find_start(game *g, player *p)
+void	find_start(game *g, player *p)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -37,10 +47,10 @@ void find_start(game *g, player *p)
 	}
 }
 
-void count_keys(game *g, player *p)
+void	count_keys(game *g, player *p)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -55,7 +65,9 @@ void count_keys(game *g, player *p)
 		j = 0;
 		i++;
 	}
-	//! 맵에 key가 하나 이상인지
 	if (p->keys == 0)
 		print_error("no keys\n");
 }
+	/*
+	! 맵에 key가 하나 이상인지
+	*/

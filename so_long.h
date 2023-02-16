@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 06:52:02 by mi                #+#    #+#             */
-/*   Updated: 2023/02/16 22:45:22 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/16 23:06:28 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 
 typedef struct Image
 {
-	void *door_open;
-	void *door_closed;
+	void *door_o;
+	void *door_c;
 	void *food;
 	void *player;
 	void *wall;

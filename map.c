@@ -6,7 +6,7 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:44:01 by mi                #+#    #+#             */
-/*   Updated: 2023/02/16 22:21:52 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/16 23:04:22 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ void	map_boundary_check(map *m)
 		j = 0;
 		i++;
 	}
+}
 	/*
 	! 맵 테두리가 모두 1로 둘러 쌓여있는지 -> O
 	! 맵이 직사각형인지
 */
-}
 
 void	map_entity_check(map *m)
 {
@@ -119,13 +119,12 @@ void	map_entity_check(map *m)
 	}
 	if (count_e != 1 || count_p != 1)
 		print_error("Error_map_entity\n");
+}
 	/*
 	! 맵에 엔터티 확인
 	! 맵에 exit가 하나인지 -> O
 	! 맵에 player가 하나인지 -> O
-	*/
-}
-
+	/*
 /*
 TODO: 맵 유효성 체크
 ! 1. 맵의 테두리가 모두 1로 둘러쌓여있는지 -> map_map_boundary_check
