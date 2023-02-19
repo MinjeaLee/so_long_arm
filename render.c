@@ -6,19 +6,19 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:04:36 by mi                #+#    #+#             */
-/*   Updated: 2023/02/16 23:07:31 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/19 18:32:34 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-image	*img_init(void *mlx)
+t_image	*img_init(void *mlx)
 {
-	image	*img;
+	t_image	*img;
 	int		w;
 	int		h;
 
-	img = (image *)malloc(sizeof(image));
+	img = (t_image *)malloc(sizeof(t_image));
 	img->door_o = mlx_xpm_file_to_image(mlx, "./images/door_o.xpm", &w, &h);
 	img->door_c = mlx_xpm_file_to_image(mlx, "./images/door_c.xpm", &w, &h);
 	img->food = mlx_xpm_file_to_image(mlx, "./images/food.xpm", &w, &h);
@@ -28,7 +28,7 @@ image	*img_init(void *mlx)
 	return (img);
 }
 
-void	put_img(game *g, int w, int h)
+void	put_img(t_game *g, int w, int h)
 {
 	mlx_put_image_to_window(g->mlx, g->win, g->img->land, w * 32, h * 32);
 	if (g->m->world[h][w] == '1')
@@ -45,7 +45,7 @@ void	put_img(game *g, int w, int h)
 		mlx_put_image_to_window(g->mlx, g->win, g->img->land, w * 32, h * 32);
 }
 
-void	render_map(game *g)
+void	render_map(t_game *g)
 {
 	int	w;
 	int	h;

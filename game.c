@@ -6,24 +6,24 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:01:08 by mi                #+#    #+#             */
-/*   Updated: 2023/02/16 23:02:04 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/19 18:32:34 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-player	*game_init(game *g)
+t_player	*game_init(t_game *g)
 {
-	player	*p;
+	t_player	*p;
 
-	p = (player *)malloc(sizeof(player));
+	p = (t_player *)malloc(sizeof(t_player));
 	find_start(g, p);
 	count_keys(g, p);
 	p->walk_count = 0;
 	return (p);
 }
 
-void	find_start(game *g, player *p)
+void	find_start(t_game *g, t_player *p)
 {
 	int	i;
 	int	j;
@@ -47,7 +47,7 @@ void	find_start(game *g, player *p)
 	}
 }
 
-void	count_keys(game *g, player *p)
+void	count_keys(t_game *g, t_player *p)
 {
 	int	i;
 	int	j;

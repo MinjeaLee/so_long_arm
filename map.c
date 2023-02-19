@@ -6,17 +6,17 @@
 /*   By: mi <mi@student.42seoul.kr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 19:44:01 by mi                #+#    #+#             */
-/*   Updated: 2023/02/16 23:04:22 by mi               ###   ########.fr       */
+/*   Updated: 2023/02/19 18:35:02 by mi               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-map	*map_init(char *filename)
+t_map	*map_init(char *filename)
 {
-	map	*m;
+	t_map	*m;
 
-	m = (map *)malloc(sizeof(map));
+	m = (t_map *)malloc(sizeof(t_map));
 	parser(filename, m);
 	map_boundary_check(m);
 	map_entity_check(m);
@@ -29,11 +29,11 @@ int	file_open(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		print_error("Error_file_open\n");
+		print_error("Unable to read file\n");
 	return (fd);
 }
 
-void	parser(char *filename, map *m)
+void	parser(char *filename, t_map *m)
 {
 	char	*tmp;
 	int		fd;
@@ -54,14 +54,14 @@ void	parser(char *filename, map *m)
 		if (tmp == NULL)
 			break ;
 		if (ft_strlen(tmp) != m->width)
-			print_error("Error_map_width\n");
+			print_error("Invalid map format\n");
 		h++;
 	}
 	if ((m->height < 3 || m->width < 3) || (m->height == 3 && m->width == 3))
-		print_error("Error_map_size\n");
+		print_error("It's not a big enough map.\n");
 }
 
-void	map_boundary_check(map *m)
+void	map_boundary_check(t_map *m)
 {
 	int	i;
 	int	j;
@@ -75,12 +75,12 @@ void	map_boundary_check(map *m)
 			if (i == 0 || i == m->height - 1)
 			{
 				if (m->world[i][j] != '1')
-					print_error("Error_map_boundary\n");
+					print_error("Invalid map format\n");
 			}
 			else
 			{
 				if (m->world[i][j] != '1' && (j == 0 || j == m->width - 1))
-					print_error("Error_map_boundary\n");
+					print_error("Invalid map format\n");
 			}
 			j++;
 		}
@@ -93,7 +93,7 @@ void	map_boundary_check(map *m)
 	! 맵이 직사각형인지
 */
 
-void	map_entity_check(map *m)
+void	map_entity_check(t_map *m)
 {
 	int	i;
 	int	j;
@@ -118,14 +118,14 @@ void	map_entity_check(map *m)
 		i++;
 	}
 	if (count_e != 1 || count_p != 1)
-		print_error("Error_map_entity\n");
+		print_error("Insufficient entities\n");
 }
-	/*
+/*
 	! 맵에 엔터티 확인
 	! 맵에 exit가 하나인지 -> O
 	! 맵에 player가 하나인지 -> O
-	/*
-/*
+
+
 TODO: 맵 유효성 체크
 ! 1. 맵의 테두리가 모두 1로 둘러쌓여있는지 -> map_map_boundary_check
 ! 2. 맵의 가로 세로가 3이상인지, 하지만 여기서 가로 세로가 모두 3인 경우는 유효하지 x -> map_parser
